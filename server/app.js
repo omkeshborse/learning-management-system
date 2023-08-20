@@ -3,9 +3,11 @@ import express, { json } from "express";
 import cors from "cors";
 import cookieParse from "cookie-parser";
 import {config } from 'dotenv'
-import morgan from 'morgan'
+import morgan from 'morgan' ;
+
 config() ;
 const app = express();
+
 
 /* parse to json */
 app.use(json());
@@ -17,6 +19,8 @@ app.use(
     credentials: true,
   })
 );
+/* logger middleware  */
+/* use for genrating logs after any request from the bowser or postman */
 app.use(morgan('dev')) ;
 app.use(cookieParse());
 
