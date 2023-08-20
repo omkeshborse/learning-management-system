@@ -4,7 +4,7 @@ import cors from "cors";
 import cookieParse from "cookie-parser";
 import {config } from 'dotenv'
 import morgan from 'morgan' ;
-
+import userRoutes from './routes/user.routes.js'
 config() ;
 const app = express();
 
@@ -20,7 +20,7 @@ app.use(
   })
 );
 /* logger middleware  */
-/* use for genrating logs after any request from the bowser or postman */
+/* use for generating logs after any request from the browser or postman */
 app.use(morgan('dev')) ;
 app.use(cookieParse());
 
@@ -29,6 +29,8 @@ app.use("/ping", function (req, res) {
 });
 
 // routes of 3 modules
+app.use('/api/v1/user' , userRoutes)
+
 
 app.use("*", (req, res) => {
   res.status(404).send("oops ! 404 page not found ");
